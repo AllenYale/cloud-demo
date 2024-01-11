@@ -44,3 +44,15 @@ ribbon:
     clients:
       - userService
       - orderService
+
+feign:
+#  client:
+#    config:
+#      default: # 这里用default就是全局配置，如果是写服务名称，则是针对某个微服务的配置
+#        loggerLevel: FULL #  日志级别
+  httpclient:
+    enabled: true # 开启feign对HttpClient的支持
+    max-connections: 200 # 最大的连接数
+    max-connections-per-route: 50 # 每个路径的最大连接数; GPT解释：定义每个路径（URL）的最大连接数。这是指对于同一个服务，每个具体的路径可以同时建立的最大连接数。
+
+

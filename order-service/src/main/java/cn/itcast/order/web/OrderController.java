@@ -25,18 +25,6 @@ public class OrderController {
     public Order queryOrderByUserId(@PathVariable("orderId") Long orderId) {
         // 根据id查询订单并返回
         Order order = orderService.queryOrderById(orderId);
-
-        //根据restTemplate远程调用，发起http请求实现远程调用
-        /*服务消费者不能把服务提供者的ip+port硬编码到代码中  */
-//        String url = "http://localhost:8081/user/" + order.getUserId();
-
-        //修改访问的url路径，用服务名userService代替ip、端口：
-        String url = "http://userService/user/" + order.getUserId();
-//        ResponseEntity<User> forEntity = restTemplate.getForEntity(url, User.class);
-//        User body = forEntity.getBody();
-        User userForObj = restTemplate.getForObject(url, User.class);
-
-        order.setUser(userForObj);
         return order;
     }
 }
