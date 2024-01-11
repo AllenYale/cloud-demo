@@ -48,8 +48,17 @@
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-httpclient</artifactId>
         </dependency>
+
+        <!--在order-service的pom文件中中引入feign-api的依赖： （自己新建的module）-->
+        <dependency>
+            <groupId>cn.itcast.demo</groupId>
+            <artifactId>feign-api</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
     <build>
+        <finalName>app</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

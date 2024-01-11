@@ -1,5 +1,6 @@
 package cn.itcast.order;
 
+import cn.itcast.feign.client.UserClient;
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
 import org.mybatis.spring.annotation.MapperScan;
@@ -11,7 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @MapperScan("cn.itcast.order.mapper")
-@EnableFeignClients
+/*
+//UserClient现在在cn.itcast.feign.clients包下，
+而order-service的@EnableFeignClients注解是在cn.itcast.order包下，
+不在同一个包，无法扫描到UserClient。
+指定需要加载的Client接口：
+ */
+@EnableFeignClients(clients = UserClient.class)
 @SpringBootApplication
 public class OrderApplication {
 
